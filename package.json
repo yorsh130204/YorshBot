@@ -1,0 +1,19 @@
+{
+  "name": "api-telegram",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2",
+    "node-telegram-bot-api": "^0.63.0",
+    "request": "^2.88.2",
+    "tough-cookie": "^4.1.3"
+  }
+}
