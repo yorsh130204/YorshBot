@@ -46,52 +46,43 @@ const helpMessages = {
 
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;
-    const messageText = msg.text;
-  
-    switch (messageText) {
-        case '/start':
-            const startMessage = '¡Bienvenido al bot de Tecnologías de la Información en UTCH! 🎉\n\n' +
-                'Este bot te proporcionará información sobre los programas educativos, razones para estudiar Tecnologías de la Información, posibilidades laborales y detalles de contacto de la UTCH.\n\n' +
-                'Puedes usar los siguientes comandos:\n' +
-                '/descripcion - Descripción de Tecnologías de la Información en UTCH\n' +
-                '/programas - Programas Educativos en UTCH\n' +
-                '/porqueestudiar - Razones para estudiar Tecnologías de la Información\n' +
-                '/posibilidades - Posibilidades Laborales en T.I.\n' +
-                '/contacto - Información de contacto de UTCH\n' +
-                '/ayuda - Mostrar comandos disponibles';
-            bot.sendMessage(chatId, startMessage);
-            break;
-        case '/descripcion':
-            bot.sendMessage(chatId, infoMessages['/descripcion']);
-            break;
-        case '/programas':
-            bot.sendMessage(chatId, infoMessages['/programas']);
-            break;
-        case '/porqueestudiar':
-            bot.sendMessage(chatId, infoMessages['/porqueestudiar']);
-            break;
-        case '/posibilidades':
-            bot.sendMessage(chatId, infoMessages['/posibilidades']);
-            break;
-        case '/contacto':
-            bot.sendMessage(chatId, infoMessages['/contacto']);
-            break;
-        case '/ayuda':
-            const helpText = 'Lista de comandos disponibles:\n';
-            Object.keys(helpMessages).forEach(command => {
-                helpText += `${command} - ${helpMessages[command]}\n`;
-            });
-            bot.sendMessage(chatId, helpText);
-            break;
-        case '/info':
-            // Muestra información general de Tecnologías de la Información en UTCH
-            const infoText = 'Información general sobre Tecnologías de la Información en UTCH:\n\n' +
-                '/descripcion - Descripción de Tecnologías de la Información en UTCH\n' +
-                '/programas - Programas Educativos en UTCH\n' +
-                '/porqueestudiar - Razones para estudiar Tecnologías de la Información\n' +
-                '/posibilidades - Posibilidades Laborales en T.I.\n' +
-                '/contacto - Información de contacto de UTCH\n';
-            bot.sendMessage(chatId, infoText);
-            break;
+    const messageText = msg.text.toLowerCase(); // Convierte el texto del mensaje a minúsculas para evitar problemas de formato
+
+    if (messageText.startsWith('/start')) {
+        const startMessage = '¡Bienvenido al bot de Tecnologías de la Información en UTCH! 🎉\n\n' +
+            'Este bot te proporcionará información sobre los programas educativos, razones para estudiar Tecnologías de la Información, posibilidades laborales y detalles de contacto de la UTCH.\n\n' +
+            'Puedes usar los siguientes comandos:\n' +
+            '/descripcion - Descripción de Tecnologías de la Información en UTCH\n' +
+            '/programas - Programas Educativos en UTCH\n' +
+            '/porqueestudiar - Razones para estudiar Tecnologías de la Información\n' +
+            '/posibilidades - Posibilidades Laborales en T.I.\n' +
+            '/contacto - Información de contacto de UTCH\n' +
+            '/ayuda - Mostrar comandos disponibles';
+        bot.sendMessage(chatId, startMessage);
+    } else if (messageText.startsWith('/descripcion')) {
+        bot.sendMessage(chatId, infoMessages['/descripcion']);
+    } else if (messageText.startsWith('/programas')) {
+        bot.sendMessage(chatId, infoMessages['/programas']);
+    } else if (messageText.startsWith('/porqueestudiar')) {
+        bot.sendMessage(chatId, infoMessages['/porqueestudiar']);
+    } else if (messageText.startsWith('/posibilidades')) {
+        bot.sendMessage(chatId, infoMessages['/posibilidades']);
+    } else if (messageText.startsWith('/contacto')) {
+        bot.sendMessage(chatId, infoMessages['/contacto']);
+    } else if (messageText.startsWith('/ayuda')) {
+        let helpText = 'Lista de comandos disponibles:\n';
+        Object.keys(helpMessages).forEach(command => {
+            helpText += `${command} - ${helpMessages[command]}\n`;
+        });
+        bot.sendMessage(chatId, helpText);
+    } else if (messageText.startsWith('/info')) {
+        // Muestra información general de Tecnologías de la Información en UTCH
+        const infoText = 'Información general sobre Tecnologías de la Información en UTCH:\n\n' +
+            '/descripcion - Descripción de Tecnologías de la Información en UTCH\n' +
+            '/programas - Programas Educativos en UTCH\n' +
+            '/porqueestudiar - Razones para estudiar Tecnologías de la Información\n' +
+            '/posibilidades - Posibilidades Laborales en T.I.\n' +
+            '/contacto - Información de contacto de UTCH\n';
+        bot.sendMessage(chatId, infoText);
     }
 });
